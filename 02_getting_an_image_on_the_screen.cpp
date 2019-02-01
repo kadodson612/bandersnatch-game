@@ -27,6 +27,9 @@ SDL_Window* gWindow = NULL;
 //The surface contained by the window
 SDL_Surface* gScreenSurface = NULL;
 
+//The surface contained by the window
+SDL_Surface* textSurface = NULL;
+
 //The image we will load and show on the screen
 SDL_Surface* gXOut = NULL;
 
@@ -36,9 +39,7 @@ SDL_Surface* gTitle = NULL;
 //The window renderer
 //SDL_Renderer* renderer = NULL;
 
-TTF_Font* font = TTF_OpenFont("arial.ttf", 25);
 
-SDL_Color foregroundColor = { 255, 255, 255 };
 
 SDL_Color backgroundColor = { 0, 0, 255 };
 
@@ -176,8 +177,12 @@ int main( int argc, char* args[] )
                 //Main loop flag
                 bool quit = false;
             
+                TTF_Font* font = TTF_OpenFont("arial.ttf", 25);
+            
+                SDL_Color foregroundColor = { 255, 255, 255 };
+            
                 SDL_Surface* textSurface = TTF_RenderText_Solid(font, "Hello World", foregroundColor);
-                
+            
                 //Event handler
                 SDL_Event e;
             
@@ -218,6 +223,7 @@ int main( int argc, char* args[] )
                             SDL_Delay( 1000 );
                             SDL_BlitSurface(textSurface, NULL, gScreenSurface, NULL);
                             SDL_UpdateWindowSurface( gWindow );
+                            SDL_Delay( 5000 );
                             
                         }
                     }
