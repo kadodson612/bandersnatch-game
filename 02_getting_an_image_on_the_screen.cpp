@@ -9,7 +9,7 @@ and may not be redistributed without written permission.*/
 #include <string>
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 640;
+const int SCREEN_WIDTH = 720;
 const int SCREEN_HEIGHT = 480;
 
 //Starts up SDL and creates window
@@ -32,6 +32,23 @@ SDL_Surface* gHelloWorld = NULL;
 
 //The image we will load and show on the screen
 SDL_Surface* gXOut = NULL;
+
+//The title screen
+SDL_Surface* gTitle = NULL;
+
+//The window renderer
+SDL_Renderer* gRenderer = NULL;
+
+TTF_Font* font = TTF_OpenFont("ARIAL.TTF", 12);
+
+SDL_Color foregroundColor = { 255, 255, 255 };
+
+SDL_Color backgroundColor = { 0, 0, 255 };
+
+SDL_Surface* textSurface = TTF_RenderText_Shaded(font, "This is my text.", foregroundColor, backgroundColor);
+
+// Pass zero for width and height to draw the whole surface
+SDL_Rect textLocation = { 100, 100, 0, 0 };
 
 
 SDL_Surface* loadSurface( std::string path )
@@ -66,9 +83,9 @@ bool init()
 	bool success = true;
 
 	//Initialize SDL
-	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+	if( SDL_Init( SDL_INIT_VIDEO ) < 0 || TTF_Init() < 0)
 	{
-		printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
+		printf( "SDL or TTF could not initialize! SDL_Error: %s\n", SDL_GetError() );
 		success = false;
 	}
 	else
@@ -90,16 +107,16 @@ bool init()
 	return success;
 }
 
-bool loadMedia()
+bool loadMedia(std::string path)
 {
     //Loading success flag
     bool success = true;
     
     //Load splash image
-    gXOut = loadSurface( "bandersnatch-logo.png" );
+    gXOut = loadSurface( path );
     if( gXOut == NULL )
     {
-        printf( "Unable to load image %s! SDL Error: %s\n", "bandersnatch-logo.png", SDL_GetError() );
+        printf( "Unable to load image %s! SDL Error: %s\n", path.c_str() , SDL_GetError() );
         success = false;
     }
     
@@ -131,7 +148,7 @@ int main( int argc, char* args[] )
 	else
 	{
 		//Load media
-		if( !loadMedia() )
+		if( !loadMedia("bandersnatch-logo.png") )
 		{
 			printf( "Failed to load media!\n" );
 		}
@@ -140,6 +157,8 @@ int main( int argc, char* args[] )
         {
                 //Main loop flag
                 bool quit = false;
+            
+                bool gameRunning = false;
                 
                 //Event handler
                 SDL_Event e;
@@ -147,10 +166,19 @@ int main( int argc, char* args[] )
                 //Apply the image
                 SDL_BlitSurface( gXOut, NULL, gScreenSurface, NULL );
             
+                //Update the surface
+                SDL_UpdateWindowSurface( gWindow );
+            
                 //Wait two seconds
                 SDL_Delay( 5000 );
+            
+                //Load media
+                if( !loadMedia("title.jpg") )
+                {
+                    printf( "Failed to load media!\n" );
+                }
                 
-                //While application is running
+                //While title screen is running
                 while( !quit )
                 {
                     //Handle events on queue
@@ -161,13 +189,42 @@ int main( int argc, char* args[] )
                         {
                             quit = true;
                         }
+                        else if (e.type == SDL_MOUSEBUTTONUP )
+                        {
+                            SDL_FillRect(gScreenSurface, NULL, SDL_MapRGB(gScreenSurface->format, 0, 0, 0));
+                            SDL_UpdateWindowSurface( gWindow );
+                            gameRunning = true;
+                            quit = true;
+                        }
                     }
                     
                     //Apply the image
-                    //SDL_BlitSurface( gXOut, NULL, gScreenSurface, NULL );
+                    SDL_BlitSurface( gXOut, NULL, gScreenSurface, NULL );
                     
                     //Update the surface
                     SDL_UpdateWindowSurface( gWindow );
+                }
+            
+                int current_state = 0;
+                int end_state = 1;
+            
+                //While normal operation of game is running
+                while (gameRunning && current_state < end_state)
+                {
+                    SDL_FillRect(gScreenSurface, NULL, SDL_MapRGB(gScreenSurface->format, 0, 0, 0));
+                    SDL_BlitSurface(textSurface, NULL, gScreenSurface, &textLocation);
+                    SDL_UpdateWindowSurface( gWindow );
+                    
+                    //Handle events on queue
+                    if( SDL_PollEvent( &e ) != 0 )
+                    {
+                        //User requests quit
+                        if( e.type == SDL_QUIT )
+                        {
+                            gameRunning = false;
+                        }
+                    }
+                    
                 }
         }
     }

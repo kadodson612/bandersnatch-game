@@ -32,6 +32,8 @@
 		D88065982203C9B00002514C /* bandersnatch-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bandersnatch-logo.png"; sourceTree = "<group>"; };
 		D88065992203C9B40002514C /* 02_getting_an_image_on_the_screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = 02_getting_an_image_on_the_screen.cpp; sourceTree = "<group>"; };
 		D880659C2203D6590002514C /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
+		D880659E2203E20C0002514C /* title.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = title.jpg; sourceTree = "<group>"; };
+		D880659F2203E9E50002514C /* arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = arial.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,8 @@
 			isa = PBXGroup;
 			children = (
 				D88065992203C9B40002514C /* 02_getting_an_image_on_the_screen.cpp */,
+				D880659F2203E9E50002514C /* arial.ttf */,
+				D880659E2203E20C0002514C /* title.jpg */,
 				D88065982203C9B00002514C /* bandersnatch-logo.png */,
 				D808E09F2203B34B009C8769 /* Products */,
 				D808E0A82203B3A6009C8769 /* Frameworks */,
