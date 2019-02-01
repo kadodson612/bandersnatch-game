@@ -1,7 +1,3 @@
-/*This source code copyrighted by Lazy Foo' Productions (2004-2019)
-and may not be redistributed without written permission.*/
-
-//Using SDL and standard IO
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <SDL2_ttf/SDL_ttf.h>
@@ -41,15 +37,10 @@ SDL_Surface* gTitle = NULL;
 //The window renderer
 //SDL_Renderer* renderer = NULL;
 
-
-
 SDL_Color backgroundColor = { 0, 0, 255 };
-
-
 
 // Pass zero for width and height to draw the whole surface
 SDL_Rect textLocation = { 100, 100, 0, 0 };
-
 
 SDL_Surface* loadSurface( std::string path )
 {
