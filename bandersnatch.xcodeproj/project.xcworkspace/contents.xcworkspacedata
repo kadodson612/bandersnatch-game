@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:../02_getting_an_image_on_the_screen.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:../bandersnatch-logo.png">
+   </FileRef>
+   <FileRef
+      location = "self:">
+   </FileRef>
+</Workspace>
