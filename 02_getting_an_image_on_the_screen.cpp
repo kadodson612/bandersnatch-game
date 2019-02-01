@@ -181,10 +181,18 @@ int main( int argc, char* args[] )
             
                 SDL_Color foregroundColor = { 255, 255, 255 };
             
-                SDL_Surface* textSurface = TTF_RenderText_Solid(font, "Hello World", foregroundColor);
+                std::string story[100] = {
+                    "England. July 1984. You are a young programmer named Stefan Butler with dreams of adapting a choose your own adventure book called Bandersnatch into a video game. Do you choose to work with Tuckersoft to develop your game? Use the left arrow key for No and the right arrow key for Yes. \n \n No \t \t Yes",
+                    "Ritman says you chose the wrong path. The game is released months later and critically panned as 'designed by committee'. \n \n GAME OVER"
+                };
+            
+                SDL_Surface* textSurface = TTF_RenderText_Blended_Wrapped(font, story[0].c_str(), foregroundColor, 700);
             
                 //Event handler
                 SDL_Event e;
+            
+                //Current State
+                int current_state = 0;
             
                 //Apply the image
                 SDL_BlitSurface( gXOut, NULL, gScreenSurface, NULL );
@@ -212,7 +220,7 @@ int main( int argc, char* args[] )
                         {
                             quit = true;
                         }
-                        else if (e.type == SDL_MOUSEBUTTONUP )
+                        else if (e.type == SDL_MOUSEBUTTONUP && current_state == 0)
                         {
                             
                             SDL_FillRect(gScreenSurface, NULL, SDL_MapRGB(gScreenSurface->format, 0, 0, 0));
@@ -220,10 +228,20 @@ int main( int argc, char* args[] )
                             SDL_BlitSurface(gXOut, NULL, gScreenSurface, NULL);
                             SDL_UpdateWindowSurface( gWindow );
                             //Wait
-                            SDL_Delay( 1000 );
-                            SDL_BlitSurface(textSurface, NULL, gScreenSurface, NULL);
+                            SDL_Delay( 2000 );
+                            gXOut = textSurface;
+                        } else if (e.type == SDL_KEYDOWN &&  e.key.keysym.sym == SDLK_RIGHT) {
+                            current_state++;
+                            SDL_FillRect(gScreenSurface, NULL, SDL_MapRGB(gScreenSurface->format, 0, 0, 0));
+                            SDL_FillRect(gXOut, NULL, SDL_MapRGB(gScreenSurface->format, 0, 0, 0));
+                            gXOut = TTF_RenderText_Blended_Wrapped(font, story[current_state].c_str(), foregroundColor, 700);
+                            SDL_Delay( 2000 );
+                            //Apply the image
+                            SDL_BlitSurface( gXOut, NULL, gScreenSurface, NULL );
+                            
+                            //Update the surface
                             SDL_UpdateWindowSurface( gWindow );
-                            SDL_Delay( 5000 );
+                            SDL_Delay( 2000 );
                             
                         }
                     }
