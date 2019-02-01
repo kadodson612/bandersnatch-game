@@ -7,6 +7,8 @@ and may not be redistributed without written permission.*/
 #include <SDL2_ttf/SDL_ttf.h>
 #include <stdio.h>
 #include <string>
+#include <map>
+#include <vector>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 720;
@@ -182,8 +184,29 @@ int main( int argc, char* args[] )
                 SDL_Color foregroundColor = { 255, 255, 255 };
             
                 std::string story[100] = {
-                    "England. July 1984. You are a young programmer named Stefan Butler with dreams of adapting a choose your own adventure book called Bandersnatch into a video game. Do you choose to work with Tuckersoft to develop your game? Use the left arrow key for No and the right arrow key for Yes. \n \n No \t \t Yes",
-                    "Ritman says you chose the wrong path. The game is released months later and critically panned as 'designed by committee'. \n \n GAME OVER"
+                    "England. July 1984. You are a young programmer named Stefan Butler with dreams of adapting a choose your own adventure book called Bandersnatch into a video game. Do you choose to work with Tuckersoft to develop your game? Use the left and right arrow keys to choose. \n \n Yes \t \t No",
+                    "Ritman says you chose the wrong path. The game is released months later and critically panned as 'designed by committee'. \n \n GAME OVER",
+                    "Talk about mom? \n \n Yes \t \t No",
+                    "You threw tea on your computer, ruining all your work. \n \n GAME OVER",
+                    "You have to visit Dr. Haynes. Do you take the meds or throw them? \n \n Take \t \t Throw",
+                    "After taking the meds, your game gets published with a bad rating. \n \n GAME OVER",
+                    "Kill Dad? \n \n Yes \t \t No",
+                    "Your game was published at 2.5/5 stars. \n \n GAME OVER",
+                    "You went to jail. On the bright side, your game was rated at 5/5 stars. \n \n GAME OVER",
+                };
+            
+
+                // Initialize a Map of string & vector of int using initializer_list
+            std::map<int, std::vector<int> > choiceMap =     {
+                    { 0, {1, 2} },
+                    { 1, {100, 100}},
+                    { 2, {3, 4}},
+                    { 3, {100, 100}},
+                    { 4, {5, 6}},
+                    { 5, {100, 100}},
+                    { 6, {7, 8}},
+                    { 7, {100, 100}},
+                    { 8, {100, 100}}
                 };
             
                 SDL_Surface* textSurface = TTF_RenderText_Blended_Wrapped(font, story[0].c_str(), foregroundColor, 700);
@@ -193,6 +216,9 @@ int main( int argc, char* args[] )
             
                 //Current State
                 int current_state = 0;
+            
+                //Choice: 0 for No, 1 for Yes
+                int choice = 0;
             
                 //Apply the image
                 SDL_BlitSurface( gXOut, NULL, gScreenSurface, NULL );
@@ -210,10 +236,10 @@ int main( int argc, char* args[] )
                 }
                 
                 //While title screen is running
-                while( !quit )
+                while( !quit && current_state < 100)
                 {
                     //Handle events on queue
-                    while( SDL_PollEvent( &e ) != 0 )
+                    while( SDL_PollEvent( &e ) != 0 && current_state < 100)
                     {
                         //User requests quit
                         if( e.type == SDL_QUIT )
@@ -230,8 +256,14 @@ int main( int argc, char* args[] )
                             //Wait
                             SDL_Delay( 2000 );
                             gXOut = textSurface;
-                        } else if (e.type == SDL_KEYDOWN &&  e.key.keysym.sym == SDLK_RIGHT) {
-                            current_state++;
+                        } else if (e.type == SDL_KEYDOWN) {
+                            if (e.key.keysym.sym == SDLK_RIGHT) choice = 1;
+                            else if (e.key.keysym.sym == SDLK_LEFT) choice = 0;
+                            //Update State
+                            current_state = choiceMap[current_state][choice];
+                            if(current_state == 100) {
+                                close();
+                            }
                             SDL_FillRect(gScreenSurface, NULL, SDL_MapRGB(gScreenSurface->format, 0, 0, 0));
                             SDL_FillRect(gXOut, NULL, SDL_MapRGB(gScreenSurface->format, 0, 0, 0));
                             gXOut = TTF_RenderText_Blended_Wrapped(font, story[current_state].c_str(), foregroundColor, 700);
