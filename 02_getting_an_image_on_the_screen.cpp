@@ -158,18 +158,18 @@ int main( int argc, char* args[] )
     }
     bool quit = false;
     
-    TTF_Font* font = TTF_OpenFont("arial.ttf", 25);
+    TTF_Font* font = TTF_OpenFont("orange kid.ttf", 25);
     
     SDL_Color foregroundColor = { 255, 255, 255 };
     
     std::string story[100] = {
         "England. July 1984. You are a young programmer named Stefan Butler with dreams of adapting a choose your own adventure book called Bandersnatch into a video game. Do you choose to work with Tuckersoft to develop your game? Use the left and right arrow keys to choose. \n \n Yes \t \t No",
-        "Ritman says you chose the wrong path. The game is released months later and critically panned as 'designed by committee'. \n \n GAME OVER",
-        "Talk about mom? \n \n Yes \t \t No",
+        "Ritman from Tuckersoft says you chose the wrong path. The game is released months later and critically panned as 'designed by committee'. \n \n GAME OVER",
+        "Your dad asks you to talk about mom. Do you talk about mom? \n \n Yes \t \t No",
         "You threw tea on your computer, ruining all your work. \n \n GAME OVER",
-        "You have to visit Dr. Haynes. Do you take the meds or throw them? \n \n Take \t \t Throw",
-        "After taking the meds, your game gets published with a bad rating. \n \n GAME OVER",
-        "Kill Dad? \n \n Yes \t \t No",
+        "You have to visit your psychiatrist, Dr. Haynes. Do you take the meds that he prescribes to you or throw them in the garbage? \n \n Take \t \t Throw Away",
+        "After taking the meds, your game gets published with a bad rating, saying that it seemed like the developer was on autopilot. Dagnabbit. \n \n GAME OVER",
+        "You're really mad. Do you decide to kill Dad? \n \n Yes \t \t No",
         "Your game was published at 2.5/5 stars. \n \n GAME OVER",
         "You went to jail. On the bright side, your game was rated at 5/5 stars. \n \n GAME OVER",
     };
@@ -198,15 +198,6 @@ int main( int argc, char* args[] )
     
     //User's choice
     int choice = 0;
-    
-    //Apply the image
-    SDL_BlitSurface( gXOut, NULL, gScreenSurface, NULL );
-    
-    //Update the surface
-    SDL_UpdateWindowSurface( gWindow );
-    
-    //Wait
-    SDL_Delay( 5000 );
     
     //Load second title image
     if( !loadMedia("title.jpg") )

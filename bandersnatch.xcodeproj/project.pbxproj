@@ -34,6 +34,8 @@
 		D880659C2203D6590002514C /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		D880659E2203E20C0002514C /* title.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = title.jpg; sourceTree = "<group>"; };
 		D880659F2203E9E50002514C /* arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = arial.ttf; sourceTree = "<group>"; };
+		D88065A02207C85E0002514C /* ARCADECLASSIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARCADECLASSIC.TTF; sourceTree = "<group>"; };
+		D88065A12207CB010002514C /* orange kid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "orange kid.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,8 @@
 			isa = PBXGroup;
 			children = (
 				D88065992203C9B40002514C /* 02_getting_an_image_on_the_screen.cpp */,
+				D88065A12207CB010002514C /* orange kid.ttf */,
+				D88065A02207C85E0002514C /* ARCADECLASSIC.TTF */,
 				D880659F2203E9E50002514C /* arial.ttf */,
 				D880659E2203E20C0002514C /* title.jpg */,
 				D88065982203C9B00002514C /* bandersnatch-logo.png */,
