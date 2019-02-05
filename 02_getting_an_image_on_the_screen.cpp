@@ -163,15 +163,24 @@ int main( int argc, char* args[] )
     SDL_Color foregroundColor = { 255, 255, 255 };
     
     std::string story[100] = {
-        "England. July 1984. You are a young programmer named Stefan Butler with dreams of adapting a choose your own adventure book called Bandersnatch into a video game. Do you choose to work with Tuckersoft to develop your game? Use the left and right arrow keys to choose. \n \n Yes \t \t No",
-        "Ritman from Tuckersoft says you chose the wrong path. The game is released months later and critically panned as 'designed by committee'. \n \n GAME OVER",
-        "Your dad asks you to talk about mom. Do you talk about mom? \n \n Yes \t \t No",
-        "You threw tea on your computer, ruining all your work. \n \n GAME OVER",
-        "You have to visit your psychiatrist, Dr. Haynes. Do you take the meds that he prescribes to you or throw them in the garbage? \n \n Take \t \t Throw Away",
-        "After taking the meds, your game gets published with a bad rating, saying that it seemed like the developer was on autopilot. Dagnabbit. \n \n GAME OVER",
-        "You're really mad. Do you decide to kill Dad? \n \n Yes \t \t No",
-        "Your game was published at 2.5/5 stars. \n \n GAME OVER",
-        "You went to jail. On the bright side, your game was rated at 5/5 stars. \n \n GAME OVER",
+        "England. July 1984. You are a young programmer named Stefan Butler with dreams of adapting a choose your own adventure book called Bandersnatch into a video game. You demo your game to Tuckersoft, the biggest video game company, and get an offer. Do you choose to work with Tuckersoft to develop your game? Use the left and right arrow keys to choose. \n \n Yes \t \t No",
+        "Ritman from Tuckersoft says you chose the wrong path. The game is released months later and critically panned as 'designed by committee', receiving a score of 2.5/5. \n \n GAME OVER",
+        "While working in your bedroom, you make noises of frustration. Dad comes in and asks you to talk about mom, thinking it is because of her anniversary of passing away. Do you talk about mom? \n \n Yes \t \t No",
+        "You throw tea at your computer, and it is destroyed. Bandersnatch is not published. \n \n GAME OVER",
+        "No, you don\'t want to think about mom, you are already stressed out enough about the game. Why is Dad even bringing it up now? \n \n Shout at Dad \t \t Just keep quiet",
+        "You shout at Dad, and you run out of the house. You needed that fresh air. You see Collin, the star game dev who made all of your favorite games, turning the corner. Follow him? \n \n Follow Collin \t \t Stay put",
+        "You catch up to Collin who is on the rooftop of a tall building and see that he is snorting something. Collin offers you some. Take the drug? \n \n Why not? \t \t Uh, no",
+        "You take the drug and jump off the building. Bandersnatch is not published. \n \n GAME OVER",
+        "You don't take the drug, but you feel a pang of betrayal. How could the person you look up to, your hero, be dependent on such lowly substance? \n \n Push Collins \t \t Go back home",
+        "There is a policeman patrolling who catches you in the act. You end up in jail immediately, and Bandersnatch is not published. \n \n GAME OVER",
+        "Dad forces you to visit your therapist Dr. Haynes. She prescribes you even more medication. When you get back home, you ponder with the medication in your hands. \n \n Take the meds \t \t Throw them away",
+        "You took the meds and finished Bandersnatch. It gets a rating of 0/5. \n \n GAME OVER",
+        "You throw away the meds. You hack away at your computer until midnight, and the program crashes suddenly. You are fed up with this. Throw tea at the computer? \n \n Yes \t \t No",
+        "You hit your desk in frustration. Dad comes in angry, asking what you think you are doing. Well, what does he think? Fiddling your thumbs? You start yelling at him, and him at you. The argument continues into the kitchen, and you just cannot take any more of this. You eye the kitchen knife. You grab it. \n \n Look at the table \t \t Look at Dad",
+        "You stab the apple on the table. You go back to your room and finish the game. Bandersnatch receives a 0/5. \n \n GAME OVER",
+        "You lose control and the next thing you know, you see Dad on the kitchen floor, bloody and lifeless. You don\'t feel anything. You laugh maniacally. \n \n Chop up Dad's body \t \t Bury Dad's body",
+        "You quickly chop up the body into pieces and toss them into a bag. You return to your computer and finish Bandersnatch. The police don\'t even come for you until a neighbor reports a strange smell and Dad\'s office files a missing persons case after a week of missed phone calls. You\'re in jail now as the crazy programmer who killed his Dad, but nothing matters anymore. Bandersnatch is finished, and it receives the 5/5 that it deserves. That you deserve. \n \n GAME OVER",
+        "You start panicking as you dig a big enough hole in the backyard. You hear footsteps and glance up - thank God, it's just Collin... But he sees the bloody body next to you and the hole. \n \n Kill Collin \t \t Ask for help"
     };
     
     
@@ -181,11 +190,20 @@ int main( int argc, char* args[] )
         { 1, {100, 100} },
         { 2, {3, 4} },
         { 3, {100, 100} },
-        { 4, {5, 6} },
-        { 5, {100, 100} },
+        { 4, {5, 10} },
+        { 5, {6, 10} },
         { 6, {7, 8}},
         { 7, {100, 100} },
-        { 8, {100, 100} }
+        { 8, {9, 10} },
+        { 9, {100, 100} },
+        { 10, {11, 12} },
+        { 11, {100, 100} },
+        { 12, {3, 13} },
+        { 13, {14, 15} },
+        { 14, {100, 100} },
+        { 15, {16, 17} },
+        { 16, {100, 100} },
+        { 17, {9, 9} }
     };
     
     SDL_Surface* textSurface = TTF_RenderText_Blended_Wrapped(font, story[0].c_str(), foregroundColor, 700);
