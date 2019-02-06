@@ -34,6 +34,9 @@ SDL_Surface* textSurface = NULL;
 //The image we will load and show on the screen
 SDL_Surface* gXOut = NULL;
 
+//The image we will load and show on the screen
+SDL_Surface* gStory = NULL;
+
 //The title screen
 SDL_Surface* gTitle = NULL;
 
@@ -111,12 +114,12 @@ bool init()
     return success;
 }
 
-bool loadMedia(std::string path)
+bool loadMedia(std::string path,SDL_Surface** surface )
 {
     bool success = true;
     
-    gXOut = loadSurface( path );
-    if( gXOut == NULL )
+    *surface = loadSurface( path );
+    if( surface == NULL )
     {
         printf( "Unable to load image %s! SDL Error: %s\n", path.c_str() , SDL_GetError() );
         success = false;
@@ -217,8 +220,12 @@ int main( int argc, char* args[] )
     //User's choice
     int choice = 0;
     
+    SDL_Rect dstrect;
+    dstrect.x = 250;
+    dstrect.y = 220;
+    
     //Load second title image
-    if( !loadMedia("title.jpg") )
+    if( !loadMedia("title.jpg", &gXOut) )
     {
         printf( "Failed to load media!\n" );
     }
@@ -256,15 +263,21 @@ int main( int argc, char* args[] )
                     return 0;
                 }
                 clearSurfaces();
-                gXOut = TTF_RenderText_Blended_Wrapped(font, story[current_state].c_str(), foregroundColor, 700);
-                SDL_Delay( 2000 );
+                gXOut = TTF_RenderText_Blended_Wrapped(font, story[current_state].c_str(), foregroundColor, 710);
+               
+                //Load second title image
+                if( !loadMedia("scenes/" + std::to_string(current_state)+".GIF", &gStory) )
+                {
+                    printf( "Failed to load media!\n" );
+                    exit(1);
+                }
                 SDL_BlitSurface( gXOut, NULL, gScreenSurface, NULL );
-                
-                //Update the surface
+                SDL_BlitSurface(gStory, NULL, gScreenSurface, &dstrect);
                 SDL_UpdateWindowSurface( gWindow );
-                SDL_Delay( 2000 );
+                SDL_Delay( 3000 );
             }
         }
+        
         //Apply the image
         SDL_BlitSurface( gXOut, NULL, gScreenSurface, NULL );
         

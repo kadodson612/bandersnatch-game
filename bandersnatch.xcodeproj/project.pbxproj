@@ -36,6 +36,7 @@
 		D880659F2203E9E50002514C /* arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = arial.ttf; sourceTree = "<group>"; };
 		D88065A02207C85E0002514C /* ARCADECLASSIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARCADECLASSIC.TTF; sourceTree = "<group>"; };
 		D88065A12207CB010002514C /* orange kid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "orange kid.ttf"; sourceTree = "<group>"; };
+		D88065A2220A806F0002514C /* scenes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scenes; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				D88065992203C9B40002514C /* 02_getting_an_image_on_the_screen.cpp */,
+				D88065A2220A806F0002514C /* scenes */,
 				D88065A12207CB010002514C /* orange kid.ttf */,
 				D88065A02207C85E0002514C /* ARCADECLASSIC.TTF */,
 				D880659F2203E9E50002514C /* arial.ttf */,
