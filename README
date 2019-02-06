@@ -1,0 +1,23 @@
+#BANDERSNATCH
+##Documentation
+
+###Summary
+This game is based on Bandersnatch, an interactive Netflix original movie. This is a decision-based text game with images to help visualization.
+
+###Dependencies
+Follow the steps outlined in this guide for each of the dependencies:
+http://lazyfoo.net/tutorials/SDL/01_hello_SDL/mac/index.php
+
+SDL2: https://www.libsdl.org/download-2.0.php
+SDL2_image: https://www.libsdl.org/projects/SDL_image/
+SDL2_TTF: https://www.libsdl.org/projects/SDL_ttf/
+
+###BUILD
+make 
+
+###DEPLOY
+
+
+###USER INSTRUCTIONS
+Click start on the initial page.
+Use the left and right arrow keys to choose a decision when prompted.
