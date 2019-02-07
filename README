@@ -1,8 +1,9 @@
-#BANDERSNATCH
+#BANDERSNATCH on RASPBERRY PI
 ##Documentation
 
 ###Summary
-This game is based on Bandersnatch, an interactive Netflix original movie. This is a decision-based text game with images to help visualization.
+This game is based on Bandersnatch, an interactive Netflix original movie. This is a decision-based text game with images to help visualization. 
+This version of the game is meant to be played on Raspberry Pi and may not work with some environments.
 
 ###Dependencies
 Follow the steps outlined in this guide for each of the dependencies:
@@ -13,10 +14,10 @@ SDL2_image: https://www.libsdl.org/projects/SDL_image/
 SDL2_TTF: https://www.libsdl.org/projects/SDL_ttf/
 
 ###BUILD
-make 
+g++ -std=c++11 -o bandersnatch 02_getting_an_image_on_the_screen.cpp `sdl2-config --cflags --libs` -lSDL2_image -lSDL2_ttf
 
 ###DEPLOY
-
+./bandersnatch
 
 ###USER INSTRUCTIONS
 Click start on the initial page.
